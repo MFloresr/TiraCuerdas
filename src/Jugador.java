@@ -1,4 +1,5 @@
 import acm.graphics.GImage;
+import acm.graphics.GRectangle;
 
 import java.awt.*;
 
@@ -11,17 +12,8 @@ public class Jugador {
     private GImage imagen;
 
     private static final String IMAGEN_POR_DEFECTO = "Johhny.png";
-    //Cap a on mira la imatge. (1) Dreta (-1) Esquerra
-    private int mirantA;
-
-    public Jugador(){
-        this(new GImage(IMAGEN_POR_DEFECTO).getImage());
-    }
 
 
-
-
-    
 
     public Jugador(int fuerza, GImage imagen){
         this.fuerza=fuerza;
@@ -29,10 +21,9 @@ public class Jugador {
     }
     public Jugador(GImage imagen){
         this.imagen=imagen;
+        fuerza= (int)(Math.random()*(20)+1);
     }
-    public Jugador(){
 
-    }
 
     public int getFuerza() {
         return fuerza;
@@ -47,6 +38,14 @@ public class Jugador {
     }
     public GImage getImagen() {
         return imagen;
+    }
+
+    public void MoverJugador(int x, int y){
+        imagen.move(x,y);
+    }
+
+    public GRectangle getPosiscion(){
+        return imagen.getBounds();
     }
 
 }
