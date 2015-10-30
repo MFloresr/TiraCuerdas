@@ -7,10 +7,10 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://D:/Librerias/acm.jar!/" />
+          <root url="jar://E:/LIBRERIAS/acm.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

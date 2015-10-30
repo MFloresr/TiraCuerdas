@@ -16,18 +16,18 @@ public class Equip {
     public Equip(final boolean derecha){
         String nombreEquipo="Mario's TEAM";
         String nombreImagen="imagenes/E2C.png";
-        int inicio=570;
+        int inicio=470;
         int modificador = -1;
         if(derecha==true){
             nombreEquipo="Vipi's TEAM";
             nombreImagen="imagenes/Johhny.png";
-            inicio=1050;
+            inicio=750;
             modificador = 1;
         }
         for(int i=0;i<5;i++){
 
-            imagen = new GImage(nombreImagen, (i*81*modificador)+inicio, 360);
-            imagen.scale(0.2);
+            imagen = new GImage(nombreImagen, (i*81*modificador)+inicio, 260);
+           // imagen.scale(0.15);
             imagen.setSize(80,60);
             Jugador jugador = new Jugador(imagen);
             jugadores.add(jugador);
@@ -40,7 +40,7 @@ public class Equip {
 
     public int SumarFuerza(){
         for(int i=0 ;i<jugadores.size();i++){
-            int fuerzaTotal=jugadores.get(i).getFuerza();
+            fuerzaTotal=fuerzaTotal+jugadores.get(i).getFuerza();
         }
         return fuerzaTotal;
     }

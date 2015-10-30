@@ -28,8 +28,6 @@ public class Jugador {
         return fuerza;
     }
 
-    public void setImagen(String imagen) {
-    }
 
     public GImage getImagen() {
         return imagen;
