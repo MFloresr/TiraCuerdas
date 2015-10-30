@@ -2,34 +2,38 @@ import acm.graphics.*;
 import acm.program.GraphicsProgram;
 
 import java.awt.*;
+import java.util.*;
+import java.util.List;
 
 
 public class Main extends GraphicsProgram {
 
     public void run(){
 
-        setSize(1200,500);
-        GOval oval = new GOval(40,40);
-        oval.setLocation(10, 10);
-        add(oval);
-        GLine linia=new GLine(600,0,600,500);
-        add(linia);
+        setSize(1700,800);
+
         Juego juego= new Juego();
+        add(juego.CrearLinea());
 
-        GRect cuerda = juego.CrearCuerda();
-        add(cuerda);
-        GImage imatge = new GImage("imagenes/E2C.png", 250, 200);
-        imatge.scale(0.1);
-        add(imatge);
+        Cuerda cuerda = new Cuerda();
+        add(cuerda.CrearCuerda());
 
-        GImage imatge2 = new GImage("imagenes/Johhny.png", 700, 200);
-        imatge2.scale(0.20);
-        add(imatge2);
+        List<Jugador> JugadoresEquipo1 = juego.getEquipo_izquierda();
+        for(Jugador jugador: JugadoresEquipo1){
+            add(jugador.getImagen());
+        }
 
+        List<Jugador> JugadoresEquipo2 = juego.getEquipo_derecha();
+        for(Jugador jugador: JugadoresEquipo2){
+            add(jugador.getImagen());
+        }
 
-        juego.MoverCuerda(cuerda);
-
-
+        while(juego.JuegoFinalizado()==false){
+            int ronda = juego.EstiraCorda();
+            cuerda.MoverCuerda(cuerda.CrearCuerda());
+            juego.moverEquipo(ronda,0);
+            pause(230);
+        }
 
     }
 }

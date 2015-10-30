@@ -1,42 +1,62 @@
+import acm.graphics.GLine;
 import acm.graphics.GRect;
 import acm.program.GraphicsProgram;
 
 import java.awt.*;
+import java.util.*;
+import java.util.List;
 
 /**
  * Created by Vipi on 23/10/2015.
  */
 public class Juego {
-    public GRect CrearCuerda(){
-        GRect cuerda=new GRect(600,2);
-        cuerda.setFilled(true);
-        cuerda.setFillColor(Color.BLUE);
-        cuerda.setLocation(300,245);
-        return(cuerda);
+    private Equip equipo_izquierda;
+    private Equip equipo_derecha;
+    GLine linea;
+
+    public Juego(){
+        equipo_izquierda= new Equip(false);
+        equipo_derecha= new Equip(true);
     }
-    public void MoverCuerda(GRect cuerda){
-        for(int i=0;i<1000;i++){
-            int numrand = (int)(Math.random()* 2);
-            if(numrand==0){
-                cuerda.move(1,0);
-                cuerda.pause(10);
-            }else if (numrand==1){
-                cuerda.move(-1,0);
-                cuerda.pause(10);
+
+    public List<Jugador> getEquipo_izquierda() {
+        return equipo_izquierda.getJugadores();
+    }
+
+    public List<Jugador> getEquipo_derecha() {
+        return equipo_derecha.getJugadores();
+    }
+
+    public final int EstiraCorda(){
+        int ganador = equipo_izquierda.SumarFuerza()-equipo_derecha.SumarFuerza();
+        return ganador;
+    }
+
+    public void moverEquipo(int x ,int y ){
+        equipo_izquierda.MoverJugadores(x,y);
+        equipo_derecha.MoverJugadores(x,y);
+    }
+
+    public GLine CrearLinea() {
+        linea= new GLine(850,0,850,800);
+        return linea;
+    }
+
+    public boolean JuegoFinalizado(){
+        boolean chocar=false;
+        int i=0;
+        while(i<getEquipo_izquierda().size()&&chocar==false){
+            Jugador jugadorEquipoizquierda = getEquipo_izquierda().get(i);
+            Jugador jugadorEquipoderecha = getEquipo_derecha().get(i);
+            if (jugadorEquipoizquierda.getPosiscion().intersects(CrearLinea().getBounds())){
+                chocar=true;
+            }else if (jugadorEquipoderecha.getPosiscion().intersects(CrearLinea().getBounds())){
+                chocar= true;
             }
-
+            i++;
         }
+        return chocar;
     }
-
-    public int SumarFuerza(Equip equip){
-        int fuerza =0;
-        for(int i =0;i<20;i++){//TODO recorrer lista
-            fuerza = fuerza+1;
-        }
-        int FuerzaTotal=fuerza;
-        return FuerzaTotal;
-    }
-
 
 
 }

@@ -1,3 +1,5 @@
+import acm.graphics.GImage;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,40 +8,28 @@ import java.util.List;
  */
 public class Equip {
 
-    private static final String NOMBRE_POR_DEFECTO = "Equip";
-    private static final String CANTIDAD_JUGADORS= "5";
-    private String nombre;
-    private List<Jugador> jugadores;
+    private List<Jugador> jugadores =new ArrayList<Jugador>();
     private int fuerzaTotal=0;
+    GImage imagen;
 
 
-    public Equip(final String nombre,boolean derecha){
-        if(nombre==null){
-            this.nombre=nombre;
-        }else{
-            this.nombre=NOMBRE_POR_DEFECTO;
-        }
-
-
-        int pocioninicial=500;
-
+    public Equip(final boolean derecha){
+        String nombreEquipo="Mario's TEAM";
+        String nombreImagen="imagenes/E2C.png";
+        int inicio=570;
+        int modificador = -1;
         if(derecha==true){
-            pocioninicial= 800;
-
+            nombreEquipo="Vipi's TEAM";
+            nombreImagen="imagenes/Johhny.png";
+            inicio=1050;
+            modificador = 1;
         }
-        jugadores = new ArrayList<Jugador>();
-    }
+        for(int i=0;i<5;i++){
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public final void AlistarEquipo(final Jugador jugador){
-        if(jugador !=null){
+            imagen = new GImage(nombreImagen, (i*81*modificador)+inicio, 360);
+            imagen.scale(0.2);
+            imagen.setSize(80,60);
+            Jugador jugador = new Jugador(imagen);
             jugadores.add(jugador);
         }
     }
@@ -47,12 +37,22 @@ public class Equip {
     public List<Jugador> getJugadores() {
         return jugadores;
     }
-    public int SumarFuerza(List<Jugador> jugadores){
+
+    public int SumarFuerza(){
         for(int i=0 ;i<jugadores.size();i++){
             int fuerzaTotal=jugadores.get(i).getFuerza();
         }
         return fuerzaTotal;
     }
 
-
+    public final void AlistarEquipo(final Jugador jugador){
+        if(jugador !=null){
+            jugadores.add(jugador);
+        }
+    }
+    public final void MoverJugadores(int x,int y){
+        for (Jugador jugador: jugadores){
+            jugador.getImagen().move(x,y);
+        }
+    }
 }
