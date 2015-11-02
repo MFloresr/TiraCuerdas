@@ -15,10 +15,10 @@ public class Juego {
     GLine linea;
     private Cuerda cuerda;
 
-    public Juego(){
+    public Juego(Cuerda cuerda){
         equipo_izquierda= new Equip(false);
         equipo_derecha= new Equip(true);
-
+        this.cuerda=cuerda;
 
     }
 
@@ -53,10 +53,12 @@ public class Juego {
         if (ganador==1){
             equipo_derecha.MoverJugadores(-5,0);
             equipo_izquierda.MoverJugadores(-5,0);
+            cuerda.MoverCuerda(-5,0);
 
         }else if(ganador==2){
             equipo_derecha.MoverJugadores(5, 0);
             equipo_izquierda.MoverJugadores(5, 0);
+            cuerda.MoverCuerda(5,0);
         }
     }
     public void FuersasNuevas(Equip equipo){

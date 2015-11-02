@@ -12,11 +12,12 @@ public class Main extends GraphicsProgram {
 
         setSize(1300,600);
 
-        Juego juego= new Juego();
-        add(juego.CrearLinea());
 
-        Cuerda cuerda = new Cuerda();
-        add(cuerda.ValoresCuerda());
+        Cuerda cuerda = new Cuerda(200,3);
+        add(cuerda.getCuerda());
+
+        Juego juego= new Juego(cuerda);
+        add(juego.CrearLinea());
 
         List<Jugador> JugadoresEquipo1 = juego.getEquipo_izquierda();
         for(Jugador jugador: JugadoresEquipo1){
@@ -33,7 +34,7 @@ public class Main extends GraphicsProgram {
             //int ronda = juego.EstiraCorda();
             juego.ComparaForza();
             juego.moverEquipo();
-            pause(230);
+            pause(50);
 
             for(int i=0;i<JugadoresEquipo1.size();i++){
                 JugadoresEquipo1.get(i).setFuerza();
