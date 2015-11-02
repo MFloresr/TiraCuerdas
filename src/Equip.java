@@ -1,5 +1,4 @@
 import acm.graphics.GImage;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +9,7 @@ public class Equip {
 
     private List<Jugador> jugadores =new ArrayList<Jugador>();
     private int fuerzaTotal=0;
-    GImage imagen;
+    private GImage imagen;
 
 
     public Equip(final boolean derecha){
@@ -27,7 +26,6 @@ public class Equip {
         for(int i=0;i<5;i++){
 
             imagen = new GImage(nombreImagen, (i*81*modificador)+inicio, 260);
-           // imagen.scale(0.15);
             imagen.setSize(80,60);
             Jugador jugador = new Jugador(imagen);
             jugadores.add(jugador);
@@ -45,11 +43,6 @@ public class Equip {
         return fuerzaTotal;
     }
 
-    public final void AlistarEquipo(final Jugador jugador){
-        if(jugador !=null){
-            jugadores.add(jugador);
-        }
-    }
     public final void MoverJugadores(int x,int y){
         for (Jugador jugador: jugadores){
             jugador.getImagen().move(x,y);

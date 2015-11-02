@@ -1,22 +1,18 @@
 import acm.graphics.GImage;
 import acm.graphics.GRectangle;
-
-import java.awt.*;
+import java.util.Random;
 
 
 public class Jugador {
 
     private int fuerza;
     private GImage imagen;
+    private Random rand=new Random();
 
-
-    public Jugador(int fuerza, GImage imagen){
-        this.fuerza=fuerza;
-        this.imagen=imagen;
-    }
     public Jugador(GImage imagen){
         this.imagen=imagen;
-        fuerza= (int)(Math.random()*(20)+1);
+        fuerza = rand.nextInt(20)+10;
+
     }
 
 

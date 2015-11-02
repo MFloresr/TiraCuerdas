@@ -31,10 +31,9 @@ public class Main extends GraphicsProgram {
 
         while(juego.comparachoque()!=true){
 
-            //int ronda = juego.EstiraCorda();
             juego.ComparaForza();
             juego.moverEquipo();
-            pause(50);
+            pause(200);
 
             for(int i=0;i<JugadoresEquipo1.size();i++){
                 JugadoresEquipo1.get(i).setFuerza();

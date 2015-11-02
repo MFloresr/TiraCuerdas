@@ -12,7 +12,7 @@ import java.util.List;
 public class Juego {
     private Equip equipo_izquierda;
     private Equip equipo_derecha;
-    GLine linea;
+    private GLine linea;
     private Cuerda cuerda;
 
     public Juego(Cuerda cuerda){
@@ -30,10 +30,6 @@ public class Juego {
         return equipo_derecha.getJugadores();
     }
 
-    /*public final int EstiraCorda(){
-        int ganador = equipo_izquierda.SumarFuerza()-equipo_derecha.SumarFuerza();
-        return ganador;
-    }*/
     public final int ComparaForza(){
         int ganador=0;
         if (equipo_izquierda.SumarFuerza()>equipo_derecha.SumarFuerza()){
@@ -47,6 +43,7 @@ public class Juego {
         }
         return ganador;
     }
+
     public void moverEquipo(){
 
         int ganador = ComparaForza();
@@ -61,16 +58,17 @@ public class Juego {
             cuerda.MoverCuerda(5,0);
         }
     }
+
     public void FuersasNuevas(Equip equipo){
         for (int i =0;i<equipo.getJugadores().size();i++){
             equipo.getJugadores().get(i).setFuerza();
         }
     }
+
     public GLine CrearLinea() {
         linea= new GLine(650,0,650,600);
         return linea;
     }
-
 
     public boolean comparachoque(){
         boolean chocado=false;
@@ -85,22 +83,6 @@ public class Juego {
         }
         return chocado;
     }
-   /*public boolean JuegoFinalizado(){
-        boolean chocar=false;
-        int i=0;
-        while(i<getEquipo_izquierda().size()&&chocar==false){
-            Jugador jugadorEquipoizquierda = getEquipo_izquierda().get(i);
-            Jugador jugadorEquipoderecha = getEquipo_derecha().get(i);
-            if (jugadorEquipoizquierda.getPosiscion().intersects(CrearLinea().getBounds())){
-                chocar=true;
-            }else if (jugadorEquipoderecha.getPosiscion().intersects(CrearLinea().getBounds())){
-                chocar= true;
-            }
-            i++;
-        }
-        return chocar;
-    }*/
-
 
 }
 
